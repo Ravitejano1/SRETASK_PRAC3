@@ -7,14 +7,14 @@ node{
                 stage('Maven Build'){
                     def mavenHome = tool name: "Maven-3.9.0", type: "maven"
                     def mavenCMD = "${mavenHome}/bin/mvn"
-                    sh "${mavenHome}/bin/mvn clean package"
+                    sh "${mavenCMD}/bin/mvn clean package"
                 }
                 
                 stage('SonarQube analysis'){
                   withSonarQubeEnv('Sonar-Server-9.6'){
                     def mavenHome = tool name: "Maven-3.9.0", type: "maven"
                     def mavenCMD = "${mavenHome}/bin/mvn"
-                   sh "${mavenHome}/bin/mvn sonar:sonar'
+                   sh "${mavenCMD}/bin/mvn sonar:sonar'
                    }
        }
  }
