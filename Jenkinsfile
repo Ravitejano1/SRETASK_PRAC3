@@ -1,6 +1,6 @@
 node{
 
-                stage('Clone repo'){
+                 stage('Clone repo'){
                     git branch: 'main', credentialsId: 'Githubcredentials', url: 'https://github.com/Ravitejano1/SRETASK_PRAC3.git'
                 }
 
@@ -10,11 +10,12 @@ node{
                 sh "${mavenCMD} clean package"
                 }
                 
-                stage('SonarQube analysis') {
-                withSonarQubeEnv('Sonar-Server-7.8'){
-                def mavenHome = tool name: "Maven-3.9.0", type: "maven"
-                def mavenCMD = "${mavenHome}/bin/mvn"
-                sh "${mavenCMD} sonar:sonar"
-              }
-            }
+                stage('SonarQube analysis'){
+                  withSonarQubeEnv('Sonar-Server-9.6'){
+                     def mavenHome = tool name: "Maven-3.9.0", type: "maven"
+                     def mavenCMD = "${mavenHome}/bin/mvn"
+                     sh "${mavenCMD} sonar:sonar"
+                     sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar'
+                   }
+       }
  }
