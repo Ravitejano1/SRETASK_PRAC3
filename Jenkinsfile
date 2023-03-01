@@ -14,7 +14,7 @@ node{
                   withSonarQubeEnv('Sonar-Server-9.6'){
                     def mavenHome = tool name: "Maven-3.9.0", type: "maven"
                     def mavenCMD = "${mavenHome}/bin/mvn"
-                   sh "${mavenCMD} sonar:sonar'
+                   sh "${mavenCMD} sonar:sonar"
                    }
        }
  }
